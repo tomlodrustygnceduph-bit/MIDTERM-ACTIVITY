@@ -1,0 +1,116 @@
+# Number Ones
+def ones(x):
+    if x == 0:
+        print("Zero", end="")
+    elif x == 1:
+        print("One", end="")
+    elif x == 2:
+        print("Two", end="")
+    elif x == 3:
+        print("Three", end="")
+    elif x == 4:
+        print("Four", end="")
+    elif x == 5:
+        print("Five", end="")
+    elif x == 6:
+        print("Six", end="")
+    elif x == 7:
+        print("Seven", end="")
+    elif x == 8:
+        print("Eight", end="")
+    elif x == 9:
+        print("Nine", end="")
+
+
+# Number Tens
+def tens(x):
+    if x == 10:
+        print("Ten", end="")
+    elif x == 11:
+        print("Eleven", end="")
+    elif x == 12:
+        print("Twelve", end="")
+    elif x == 13:
+        print("Thirteen", end="")
+    elif x == 14:
+        print("Fourteen", end="")
+    elif x == 15:
+        print("Fifteen", end="")
+    elif x == 16:
+        print("Sixteen", end="")
+    elif x == 17:
+        print("Seventeen", end="")
+    elif x == 18:
+        print("Eighteen", end="")
+    elif x == 19:
+        print("Nineteen", end="")
+    elif x >= 20:
+        t = x // 10
+        o = x % 10
+
+        if t == 2:
+            print("Twenty", end=" ")
+        elif t == 3:
+            print("Thirty", end=" ")
+        elif t == 4:
+            print("Forty", end=" ")
+        elif t == 5:
+            print("Fifty", end=" ")
+        elif t == 6:
+            print("Sixty", end=" ")
+        elif t == 7:
+            print("Seventy", end=" ")
+        elif t == 8:
+            print("Eighty", end=" ")
+        elif t == 9:
+            print("Ninety", end=" ")
+
+        if o != 0:
+            ones(o)
+
+
+# Number Hundreds
+def hundreds(x):
+    h = x // 100
+    rem = x % 100
+
+    if h != 0:
+        ones(h)
+        print(" Hundred", end=" ")
+
+    if rem != 0:
+        if rem < 10:
+            ones(rem)
+        else:
+            tens(rem)
+
+
+# Number Thousands
+def thousands(x):
+    if x == 1000:
+        print("One Thousand", end="")
+    else:
+        th = x // 1000
+        rem = x % 1000
+
+        if th != 0:
+            ones(th)
+            print(" Thousand", end=" ")
+
+        if rem != 0:
+            hundreds(rem)
+
+
+# Main Program
+num = int(input("Enter a number: "))
+
+if num < 9:
+    ones(num)
+elif num < 99:
+    tens(num)
+elif num < 999:
+    hundreds(num)
+elif num <= 9999:
+    thousands(num)
+else:
+    print("Out of range")
