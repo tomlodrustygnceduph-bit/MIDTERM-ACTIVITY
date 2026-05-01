@@ -1,0 +1,97 @@
+import datetime
+
+calendar = {}
+
+def is_valid_date(year, month, day):
+    try:
+        datetime.date(year, month, day)
+        return True
+    except ValueError:
+        return False
+
+def add_occasion():
+    print("Enter a date for your occasion (between 2026 and 2028):")
+    year = int(input("Year: "))
+    month = int(input("Month: "))
+    day = int(input("Day: "))
+    
+    if year < 2026 or year > 2028:
+        print("Year must be between 2026 and 2028!")
+        return
+    
+    if not is_valid_date(year, month, day):
+        print("Invalid date! Please enter a correct date.")
+        return
+    
+    date_key = f"{year}-{month:02d}-{day:02d}"
+    
+    occasion = input("Enter the occasion: ")
+    calendar[date_key] = occasion
+    print(f"Occasion added for {date_key}.")
+
+def view_calendar():
+    if not calendar:
+        print("No occasions added yet.")
+    else:
+        print("Your calendar occasions:")
+        for date, occasion in sorted(calendar.items()):
+            print(f"{date}: {occasion}")
+
+def view_by_date():
+    print("Enter the date to view:")
+    year = int(input("Year: "))
+    month = int(input("Month: "))
+    day = int(input("Day: "))
+    
+    date_key = f"{year}-{month:02d}-{day:02d}"
+    
+    if date_key in calendar:
+        print(f"{date_key}: {calendar[date_key]}")
+    else:
+        print("No occasion found on that date.")
+
+def delete_occasion():
+    if not calendar:
+        print("No occasions to delete.")
+        return
+    
+    print("Enter the date of the occasion you want to delete:")
+    year = int(input("Year: "))
+    month = int(input("Month: "))
+    day = int(input("Day: "))
+    
+    date_key = f"{year}-{month:02d}-{day:02d}"
+    
+    if date_key in calendar:
+        del calendar[date_key]
+        print(f"Occasion on {date_key} deleted.")
+    else:
+        print("No occasion found on that date.")
+
+def main():
+    while True:
+        print("\nCalendar Menu:")
+        print("1. Add an occasion")
+        print("2. View all occasions")
+        print("3. View occasion by date")
+        print("4. Delete an occasion")
+        print("5. Exit")
+        
+        choice = input("Choose an option: ")
+        
+        if choice == "1":
+            add_occasion()
+        elif choice == "2":
+            view_calendar()
+        elif choice == "3":
+            view_by_date()
+        elif choice == "4":
+            delete_occasion()
+        elif choice == "5":
+            print("Exiting calendar. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
